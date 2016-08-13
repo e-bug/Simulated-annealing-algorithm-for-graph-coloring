@@ -1,5 +1,4 @@
-The main algorithm is in <a href="final.m">final.m</a> which loads the data from a file <a href="graph_adjacency_matrix.mat">graph_adjacency_matrix.mat</a> and saves 
-
+The main algorithm is in <a href="final.m">final.m</a> which loads the data from <a href="graph_adjacency_matrix.mat">graph_adjacency_matrix.mat</a> and saves 
 <ul style="text-align: justify;">
  	<li> the coloring</li><br/>
  	<li>the residual energy</li><br/>
