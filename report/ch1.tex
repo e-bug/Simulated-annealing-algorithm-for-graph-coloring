@@ -1,0 +1,24 @@
+Starting from the algorithm provided in the project description, we have developed several implementations having different cooling procedures, such as exponentially, logarithmically and linearly dependent.
+We conducted our simulations by considering several 1000-node graph realizations (in the order of hundreds) and let the node degree $c$ and the number $q$ of coloring vary, in order to consider cases where we were sure to find a proper $q$-coloring ($q$ much larger than $c$) and cases in which a minimum of zero might not have been reached.
+For fixed $c$ and $q$ values, we run simulations applying these different cooling functions and %we were surprised by the results we obtained.
+%In fact, they 
+the returned values for the average of the energy and for their corresponding variances were very close to each other.\\
+Guided by the experiments on these functions, we developed a custom procedure that is described in the following and implemented in \texttt{final.m} (attached to this report).\\
+\indent
+The algorithm can be split in three main phases, according to the number of iterations passed with respect to their total value.
+\begin{itemize}
+	\item Due to the initial randomness of the coloring, several pairs of neighboring nodes will have the same color.
+	For this reason, we want our algorithm not to consider possible disadvantageous configurations, but rather try in the succeeding steps with a new configuration.
+	As a consequence, we set an initial high value of $\beta$ to work with a system at low temperature.
+	In particular, we set $\beta\footnote[1]{All the values have been derived empirically to optimize our algorithm.}=\frac{\texttt{maxIter}}{1000}$ and a duration of $\frac{\texttt{maxIter}}{1000}$ steps.
+	\item After this first constant phase, we have an energy much lower than the initial one and we start taking into account the possibility of accepting configurations leading to a higher value of energy.\\
+	This represents the trickiest part of our procedure.\\
+	We keep trace of the number of times we reject a given configuration that would  increase our energy since this might mean we are trapped in a local minimum.
+	So, if this event happens more than $\frac{\texttt{maxIter}}{300}$ times, we reduce $\beta$ to $\frac{\texttt{maxIter}}{50 \cdotp h}$, where $h$ is the value of the energy at that step.
+	This allows us giving a higher energy to a configuration representing a local minimum rather than when it is a global one.\\
+	After this first reduction, we linearly increase this value by $\frac{20}{h}$ for the following $\frac{\texttt{maxIter}}{1000}$ steps to obtain sufficient energy to leave the (possible) minimum but not enough to neutralize the preceding moves.\\
+	Once we have progressed for these $\frac{\texttt{maxIter}}{1000}$ steps, we reset $\beta$ to $\frac{\texttt{maxIter}}{1000}$ until a new possible minimum is found.
+	\item In the final phase, when $2 \%$ of  \texttt{maxIter} iterations are left, we block $\beta$ to $5$ to avoid choosing a worse condition at the end of the procedure.
+\end{itemize}
+
+From now on we will refer to our algorithm  as \textsl{"schedule boost"}.

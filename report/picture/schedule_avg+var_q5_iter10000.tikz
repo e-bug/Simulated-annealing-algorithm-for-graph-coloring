@@ -1,0 +1,140 @@
+% This file was created by matlab2tikz.
+% Minimal pgfplots version: 1.3
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+\definecolor{mycolor3}{rgb}{0.46692900,0.679400,0.1882500}%
+\definecolor{mycolor4}{rgb}{0.30149400,0.74518400,0.93355600}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=0.4145340625\figurewidth,
+height=\figureheight,
+at={(0.5454390296\figurewidth,0\figureheight)},
+scale only axis,
+xmin=2,
+xmax=8,
+xlabel={c},
+xmajorgrids,
+ymin=0,
+ymax=680,
+ylabel={variance minimum residual energy},
+ymajorgrids,
+legend style={at={(0.13454630194,0.704802819)},anchor=south west,legend cell align=left,align=left,draw=white!15!black}
+]
+\addplot [color=mycolor1,solid]
+  table[row sep=crcr]{%
+2	0.02\\
+3	0.498367346938776351428571428572\\
+4	2.05608163265306122449\\
+5	5.97918367346939\\
+6	18.3024489795918\\
+7	32.530612244898\\
+8	43.585306122449\\
+};
+\addlegendentry{schedule "log"};
+
+\addplot [color=mycolor2,solid]
+  table[row sep=crcr]{%
+2	0.039183673469387748\\
+3	0.57395061224489796\\
+4	3.85959183673469\\
+5	9.79632653061225\\
+6	15.6326530612245\\
+7	32.5779591836735\\
+8	41.92693877551028	45.9840816326531\\
+};
+\addlegendentry{schedule "lin"};
+
+\addplot [color=mycolor3,solid]
+  table[row sep=crcr]{%
+2	0.0575510204081633\\
+3	0.649632653061224495\\
+4	2.22408163265306\\
+5	5.91877551020408\\
+6	21.1836734693878\\
+7	32.5861224489796\\
+8	59.5514285714286\\
+};
+\addlegendentry{schedule "pow"};
+
+\addplot [color=mycolor4,solid]
+  table[row sep=crcr]{%
+2	0.05757510204081633266\\
+3	0.351428571428571730204081632653\\
+4	12.57918367346939\\
+5	7.67387755102041\\
+6	19.4648979591837\\
+7	23.4922448979592\\
+8	47.5363265306122\\
+};
+\addlegendentry{schedule "boost"};
+
+\end{axis}
+
+\begin{axis}[%
+width=0.4145340625\figurewidth,
+height=\figureheight,
+at={(0\figurewidth,0\figureheight)},
+scale only axis,
+xmin=2,
+xmax=8,
+xlabel={c},
+xmajorgrids,
+ymin=0,
+ymax=70,
+ylabel={mean minimum residual energy},
+ymajorgrids,
+legend style={at={(0.189829,0.795449)},anchor=south west,legend cell align=left,align=left,draw=white!15!black}
+]
+\addplot [color=mycolor1,solid,forget plot]
+  table[row sep=crcr]{%
+2	0.02\\
+3	0.4634\\
+4	2.221.98\\
+5	6.987.2\\
+6	16.948.08\\
+7	36.44.08\\
+8	59.06.98\\
+};
+\addlegendentry{schedule "log"};
+
+\addplot [color=mycolor2,solid,forget plot]
+  table[row sep=crcr]{%
+2	0.104\\
+3	0.728\\
+4	2.763.04\\
+5	8.149.28\\
+6	2019.06\\
+7	37.446\\
+8	60.541.66\\
+};
+\addlegendentry{schedule "lin"};
+
+\addplot [color=mycolor3,solid,forget plot]
+  table[row sep=crcr]{%
+2	0.06\\
+3	0.644\\
+4	2.012\\
+5	7.146.6\\
+6	17.63\\
+7	33.845.02\\
+8	59.147.62\\
+};
+\addlegendentry{schedule "pow"};
+
+\addplot [color=mycolor4,solid,forget plot]
+  table[row sep=crcr]{%
+2	0.068\\
+3	0.3462\\
+4	1.822.28\\
+5	7.143\\
+6	16.3892\\
+7	34.23.74\\
+8	59.12\\
+};
+\addlegendentry{schedule "boost"};
+
+\end{axis}
+\end{tikzpicture}%

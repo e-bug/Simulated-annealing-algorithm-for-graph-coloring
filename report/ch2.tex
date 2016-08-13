@@ -1,0 +1,100 @@
+In this section, we exhibit the behavior of our algorithm in different scenarios.\\
+We firstly show how the residual energy varies with time in a 1000-node Erd\"os-Renyi graph, as asked in the project description.
+The following figure is obtained choosing: \texttt{N=1000}, \texttt{q=7}, \texttt{c=5}, \texttt{$\beta$=5} and \texttt{maxIter=5000}.
+\begin{figure}[h]
+	\centering
+	\setlength\figureheight{6cm} 		
+	\setlength\figurewidth{0.8\textwidth}
+	\input{picture/single_real2new.tikz}
+	\vspace{-0.3cm}
+	\caption{$H(x^t)$ as a function of time for $q=5$ and $c=5.$} 
+	\label{energy}
+\end{figure}\\
+The trend of this curve matches our expectations since we constructed our procedure in order to minimize this energy.
+Its behavior looks like a negative exponential: the energy abruptly drops at the beginning, while its decrease slows down as this value gets smaller.\\
+These phases can be explained due to the randomness in the initial coloring which, generally, is very far from a proper coloring configuration.
+In the first steps, we can easily recolor a chosen vertex in such a way that the number of neighbors having the same color immediately reduces.
+However, as the algorithm progresses, it is less likely to pick a color for a given node that leads to a better configuration.
+\newline\indent
+We now proceed by plotting the average value of residual energy as a function of $c$ for $q$ equals to $3,5,7$.
+\begin{figure}[h]
+	\centering
+	\setlength\figureheight{6cm} 		
+	\setlength\figurewidth{0.8\textwidth}
+	\input{picture/schedule_c.tikz}
+	\vspace{-0.3cm}
+	\caption{$\langle H_{min}(q,c)\rangle$ as a function of $c$ for $q=3,\,5,\,7.$}
+	\label{fig:botta}
+\end{figure}\\
+From this picture we can observe that as the parameter $c$ increases, also the mean energy is higher.
+In fact, intuitively, as we increase the number of edges among nodes, it is more difficult to find a proper coloring in the graph.
+Moreover, for a given value of $c$, the energy is higher for smaller $q$'s.
+We can clearly deduce this behavior because it is easier to properly color the graph when the number of colors increases: the probability of finding a color that is different from the ones of its neighbors is larger.\\
+In particular, we have always considered values of $c$ greater than one.
+By doing so, we avoided considering trivial cases.
+In fact, only for $c>1$ there is a giant connected component in the graph, thus the coloring task becomes difficult to perform.
+On the other hand, when $c<1$, it is possible to implement appropriate algorithms which allow to almost surely find a proper coloring of a graph.
+We have tried to test this trend by using our algorithm and the results are given in Figure \ref{fig:cpiccolo}.
+\begin{figure}[h]
+	\centering
+	\setlength\figureheight{6cm} 		
+	\setlength\figurewidth{0.8\textwidth}
+	\input{picture/schedule_csmall_marco.tikz}
+	\vspace{-0.3cm}
+	\caption{$\langle H_{min}(q,c)\rangle$ as a function of $c<1$ for $q=3,\,5,\,7.$}
+	\label{fig:cpiccolo}
+\end{figure}\\
+\indent
+
+In this last part of the report, we illustrate the behavior of the other procedures that we have also analyzed.
+In particular, the following cooling algorithms have been investigated:
+\begin{itemize}
+	\item $\beta = \beta - \log\left(\frac{\texttt{step}}{\texttt{maxIter}}\right)\cdotp\frac{\texttt{step}}{\texttt{maxIter}}\quad$ (schedule \textsl{log}),
+	\item $\beta = \beta + 0.01\quad$ (schedule \textsl{lin}),
+	\item $\beta = \beta\cdotp0.85\quad$ (schedule \textsl{pow}).
+\end{itemize}
+In the first two algorithms we update $\beta$ every 10 steps, while in the third one we update it every time the current iteration number assumes a value that is a power of 2.\\
+The following figures are obtained choosing: \texttt{N=1000}, \texttt{q=7}, \texttt{c=5}, \texttt{$\beta$=5}, \texttt{maxIter=10000}.
+
+\begin{figure}[h]
+	\centering
+	\setlength\figureheight{6cm} 		
+	\setlength\figurewidth{1\textwidth}
+	\input{picture/schedule_avg+var_q5_iter10000_new.tikz}
+	\vspace{-0.3cm}
+	\caption{$\langle H_{min}(q,c)\rangle$ and its variance as a function of $c$ for $q=5.$}
+	\label{fig:schedules}
+\end{figure}
+
+%\begin{figure}[h]
+%	\centering
+%	\setlength\figureheight{6cm} 		
+%	\setlength\figurewidth{0.8\textwidth}
+%	\input{picture/schedule_tot_q5_iter10000.tikz}
+%	\vspace{-0.3cm}
+%	\caption{$\langle H_{min}(q,c)\rangle$ as a function of $c$ for $q=5$}
+%	\label{fig:schedules}
+%\end{figure}
+
+
+From the picture on the left, we notice that, among all the chosen cooling procedures, none of them is significantly better than another, although the third one seems to be preferable. 
+Probably, the number of nodes set for the simulation is too low to reveal a real difference.
+However, it is not possible to establish what is the best procedure in an absolute sense; it could depend on the structure of the considered graph, $q$ or also on the number of iterations.\\
+Furthermore, in addition to the average of the minimum residual energy, also its variance could play an important role as we can see from the plot on the right of Figure \ref{fig:schedules}. 
+In fact, if this quantity were too large, then it could be more advantageous to run the algorithm more times but with considering a smaller number of iterations. 
+On the other hand, a narrower variance leads us to increase the number of iterations in order to find the minimum value for the residual energy. 
+%
+% \begin{figure}
+% 	\centering
+% 	\subfigure[Prima figura]
+%	\setlength\figureheight{6cm} 		
+%	\setlength\figurewidth{0.5\textwidth}
+%	\input{picture/schedule_tot_q5_iter10000.tikz}
+% 	\hspace{5mm}
+% 	\subfigure[Seconda figura]
+% 	\centering
+% 	\setlength\figureheight{6cm} 		
+% 	\setlength\figurewidth{0.5\textwidth}
+% 	\input{picture/schedule_variance_q5_iter10000.tikz}
+% 	\caption{Titolo delle figure}
+% \end{figure}
